@@ -1,4 +1,4 @@
-# mGSL:modified Generic Scientific Library
+# mGSL: modified Generic Scientific Library
 
 The GSL: GNU Scientific Library https://www.gnu.org/software/gsl/ has been of mayor influence on the C and C++ writing scientific community.
 
