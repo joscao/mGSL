@@ -42,4 +42,4 @@ private:
 	size_t n{0};        /* number of data points added */
 };
 }// END NAMEPSACE simple_rstat
-}//END NAMESPACE msl
+}//END NAMESPACE mgsl
