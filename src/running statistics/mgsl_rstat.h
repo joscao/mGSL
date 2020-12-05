@@ -19,11 +19,12 @@
 #include <cstddef>
 #include <array>
 
-namespace mgsl_rstat {
-namespace quantile {
-class workspace {
+namespace mgsl{
+namespace rstat {
+
+class quantile {
 public:
-	workspace(const double) noexcept;
+	quantile(const double) noexcept;
 
 	void add(const double);
 
@@ -38,10 +39,8 @@ private:
 	std::array<double, 5> dnp;  /* increments dn_i' */
 	std::size_t n;        		/* number of data added */
 };
-}// END NAMEPSACE quantile
 
-namespace rstat {
-class workspace {
+class rstat {
 public:
 	void add(const double) noexcept;
 
@@ -62,7 +61,7 @@ private:
 	double M3{0.0};
 	double M4{0.0};
 	size_t n{0};        /* number of data points added */
-	quantile::workspace median_workspace{0.5};
+	quantile median_workspace{0.5};
 };
 }// END NAMEPSACE rstat
-}//END NAMESPACE mgsl_rstat
+}//END NAMESPACE mgsl

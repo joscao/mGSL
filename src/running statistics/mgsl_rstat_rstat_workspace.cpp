@@ -18,9 +18,9 @@
 
 #include <cmath>
 
-using namespace mgsl_rstat::rstat;
+using namespace mgsl::rstat;
 
-void workspace::add(const double x)noexcept
+void rstat::add(const double x)noexcept
 {
 	/* update mean and variance */
 	const double delta = x - mean;
@@ -36,29 +36,29 @@ void workspace::add(const double x)noexcept
 
 	/* update median and min and max*/
 	median_workspace.add(x);
-}//void workspace::add(const double x)noexcept
+}//void rstat::add(const double x)noexcept
 
-size_t workspace::get_n()const noexcept
+size_t rstat::get_n()const noexcept
 {
 	return n;
-}//size_t get_n()const noexcept
+}//size_t rstat::get_n()const noexcept
 
-double workspace::get_min()const noexcept
+double rstat::get_min()const noexcept
 {
 	return median_workspace.get_min();
-}//double workspace::get_min()const noexcept
+}//double rstat::get_min()const noexcept
 
-double workspace::get_max()const noexcept
+double rstat::get_max()const noexcept
 {
 	return median_workspace.get_max();
-}//double workspace::get_max()const noexcept
+}//double rstat::get_max()const noexcept
 
-double workspace::get_mean()const noexcept
+double rstat::get_mean()const noexcept
 {
 	return mean;
-}//double workspace::get_mean()const noexcept
+}//double rstat::get_mean()const noexcept
 
-double workspace::get_variance()const noexcept
+double rstat::get_variance()const noexcept
 {
 	if (n > 1)
 	{
@@ -67,14 +67,14 @@ double workspace::get_variance()const noexcept
 	}
 	else
 		return 0.0;
-}//double workspace::get_variance()const noexcept
+}//double rstat::get_variance()const noexcept
 
-double workspace::get_sd()const noexcept
+double rstat::get_sd()const noexcept
 {
 	return std::sqrt(get_variance());
-}//double workspace::get_sd()const noexcept
+}//double rstat::get_sd()const noexcept
 
-double workspace::get_rms()const noexcept
+double rstat::get_rms()const noexcept
 {
 	double rms = 0.0;
 	if (n > 0)
@@ -85,9 +85,9 @@ double workspace::get_rms()const noexcept
 		rms = std::hypot(mean, a * sigma);
 	}
 	return rms;
-}//double workspace::get_rms()const noexcept
+}//double rstat::get_rms()const noexcept
 
-double workspace::get_sd_mean()const noexcept
+double rstat::get_sd_mean()const noexcept
 {
 	if (n > 0)
 	{
@@ -95,14 +95,14 @@ double workspace::get_sd_mean()const noexcept
 	}
 	else
 		return 0.0;
-}//double workspace::get_sd_mean()const noexcept
+}//double rstat::get_sd_mean()const noexcept
 
-double workspace::get_median()const noexcept
+double rstat::get_median()const noexcept
 {
 	return median_workspace.get_p_quantile();
-}//double workspace::get_median()const noexcept
+}//double rstat::get_median()const noexcept
 
-double workspace::get_skew()const noexcept
+double rstat::get_skew()const noexcept
 {
 	if ( n > 0)
 	{
@@ -112,9 +112,9 @@ double workspace::get_skew()const noexcept
 	}
 	else
 		return 0.0;
-}//double workspace::get_skew()const noexcept
+}//double rstat::get_skew()const noexcept
 
-double workspace::get_kurtosis()const noexcept
+double rstat::get_kurtosis()const noexcept
 {
 	if (n > 0)
 	{
@@ -124,4 +124,4 @@ double workspace::get_kurtosis()const noexcept
 	}
 	else
 		return 0.0;
-}//double workspace::get_kurtosis()const noexcept
+}//double rstat::get_kurtosis()const noexcept

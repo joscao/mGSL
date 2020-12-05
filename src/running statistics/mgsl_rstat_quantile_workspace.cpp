@@ -19,7 +19,7 @@
 #include <stdexcept>
 #include <algorithm>
 
-using namespace mgsl_rstat::quantile;
+using namespace mgsl::rstat;
 
 double calc_psq
 (
@@ -34,7 +34,7 @@ double calc_psq
 	return q + outer * (inner_left + inner_right);
 } // double calc_psq()
 
-double workspace::get_min()const noexcept
+double quantile::get_min()const noexcept
 {
 	if (n > 5)
 	{
@@ -47,9 +47,9 @@ double workspace::get_min()const noexcept
 		std::nth_element(temp_q.begin(), temp_q.begin(), temp_q.begin() + n);
 		return temp_q[0];
 	}
-}//double workspace::get_min()const noexcept
+}//double quantile::get_min()const noexcept
 
-double workspace::get_max()const noexcept
+double quantile::get_max()const noexcept
 {
 	if (n > 5)
 	{
@@ -62,9 +62,9 @@ double workspace::get_max()const noexcept
 		std::nth_element(temp_q.begin(), temp_q.begin(), temp_q.begin() + n, std::greater<double>());
 		return temp_q[0];
 	}
-}//double workspace::get_max()const noexcept
+}//double quantile::get_max()const noexcept
 
-double workspace::get_p_quantile()const noexcept
+double quantile::get_p_quantile()const noexcept
 {
 	if (n > 5)
 	{
@@ -91,18 +91,18 @@ double workspace::get_p_quantile()const noexcept
 		}
 		return result ;
 	}
-}//double workspace::get_p_quantile()const noexcept
+}//double quantile::get_p_quantile()const noexcept
 
-workspace::workspace(const double p_)noexcept:
+quantile::quantile(const double p_)noexcept:
 p{p_},
 q{},
 npos{1, 2, 3, 4, 5},
 np{1.0, 1.0 + 2.0 * p_, 1.0 + 4.0 * p, 3.0 + 2.0 * p, 5.0},
 dnp{0.0, 0.5 * p, p, 0.5 * (1.0 + p), 1.0},
 n{0}
-{}//workspace::workspace(const double p_) noexcept
+{}//quantile::quantile(const double p_) noexcept
 
-void workspace::add(const double x)
+void quantile::add(const double x)
 {
 	if (n < 5)
 	{
@@ -188,5 +188,5 @@ void workspace::add(const double x)
 
 	++n;
 
-}//void workspace::add(const double x)
+}//void quantile::add(const double x)
 
