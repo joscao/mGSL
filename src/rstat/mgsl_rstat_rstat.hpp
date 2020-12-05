@@ -14,13 +14,17 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
-#include "mgsl_rstat.h"
+#pragma once
+
+#include "mgsl_rstat_quantile.hpp"
+#include "mgsl_rstat_rstat_class.hpp"
 
 #include <cmath>
 
-using namespace mgsl::rstat;
+namespace mgsl{
+namespace rstat {
 
-void rstat::add(const double x)noexcept
+inline void rstat::add(const double x)noexcept
 {
 	/* update mean and variance */
 	const double delta = x - mean;
@@ -38,27 +42,27 @@ void rstat::add(const double x)noexcept
 	median_workspace.add(x);
 }//void rstat::add(const double x)noexcept
 
-size_t rstat::get_n()const noexcept
+inline size_t rstat::get_n()const noexcept
 {
 	return n;
 }//size_t rstat::get_n()const noexcept
 
-double rstat::get_min()const noexcept
+inline double rstat::get_min()const noexcept
 {
 	return median_workspace.get_min();
 }//double rstat::get_min()const noexcept
 
-double rstat::get_max()const noexcept
+inline double rstat::get_max()const noexcept
 {
 	return median_workspace.get_max();
 }//double rstat::get_max()const noexcept
 
-double rstat::get_mean()const noexcept
+inline double rstat::get_mean()const noexcept
 {
 	return mean;
 }//double rstat::get_mean()const noexcept
 
-double rstat::get_variance()const noexcept
+inline double rstat::get_variance()const noexcept
 {
 	if (n > 1)
 	{
@@ -69,12 +73,12 @@ double rstat::get_variance()const noexcept
 		return 0.0;
 }//double rstat::get_variance()const noexcept
 
-double rstat::get_sd()const noexcept
+inline double rstat::get_sd()const noexcept
 {
 	return std::sqrt(get_variance());
 }//double rstat::get_sd()const noexcept
 
-double rstat::get_rms()const noexcept
+inline double rstat::get_rms()const noexcept
 {
 	double rms = 0.0;
 	if (n > 0)
@@ -87,7 +91,7 @@ double rstat::get_rms()const noexcept
 	return rms;
 }//double rstat::get_rms()const noexcept
 
-double rstat::get_sd_mean()const noexcept
+inline double rstat::get_sd_mean()const noexcept
 {
 	if (n > 0)
 	{
@@ -97,12 +101,12 @@ double rstat::get_sd_mean()const noexcept
 		return 0.0;
 }//double rstat::get_sd_mean()const noexcept
 
-double rstat::get_median()const noexcept
+inline double rstat::get_median()const noexcept
 {
 	return median_workspace.get_p_quantile();
 }//double rstat::get_median()const noexcept
 
-double rstat::get_skew()const noexcept
+inline double rstat::get_skew()const noexcept
 {
 	if ( n > 0)
 	{
@@ -114,7 +118,7 @@ double rstat::get_skew()const noexcept
 		return 0.0;
 }//double rstat::get_skew()const noexcept
 
-double rstat::get_kurtosis()const noexcept
+inline double rstat::get_kurtosis()const noexcept
 {
 	if (n > 0)
 	{
@@ -125,3 +129,8 @@ double rstat::get_kurtosis()const noexcept
 	else
 		return 0.0;
 }//double rstat::get_kurtosis()const noexcept
+
+
+}// END NAMEPSACE rstat
+}//END NAMESPACE mgsl
+

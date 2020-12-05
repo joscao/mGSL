@@ -14,14 +14,19 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
-#include "mgsl_rstat.h"
+#pragma once
 
+#include <cstddef>
+#include <array>
 #include <stdexcept>
 #include <algorithm>
 
-using namespace mgsl::rstat;
+#include "mgsl_rstat_quantile_class.hpp"
 
-double calc_psq
+namespace mgsl{
+namespace rstat {
+
+inline double calc_psq
 (
     const double qp1, const double q, const double qm1,
     const double d, const double np1, const double n, const double nm1
@@ -34,7 +39,7 @@ double calc_psq
 	return q + outer * (inner_left + inner_right);
 } // double calc_psq()
 
-double quantile::get_min()const noexcept
+inline double quantile::get_min()const noexcept
 {
 	if (n > 5)
 	{
@@ -49,7 +54,7 @@ double quantile::get_min()const noexcept
 	}
 }//double quantile::get_min()const noexcept
 
-double quantile::get_max()const noexcept
+inline double quantile::get_max()const noexcept
 {
 	if (n > 5)
 	{
@@ -64,7 +69,7 @@ double quantile::get_max()const noexcept
 	}
 }//double quantile::get_max()const noexcept
 
-double quantile::get_p_quantile()const noexcept
+inline double quantile::get_p_quantile()const noexcept
 {
 	if (n > 5)
 	{
@@ -93,7 +98,7 @@ double quantile::get_p_quantile()const noexcept
 	}
 }//double quantile::get_p_quantile()const noexcept
 
-quantile::quantile(const double p_)noexcept:
+inline quantile::quantile(const double p_)noexcept:
 p{p_},
 q{},
 npos{1, 2, 3, 4, 5},
@@ -102,7 +107,7 @@ dnp{0.0, 0.5 * p, p, 0.5 * (1.0 + p), 1.0},
 n{0}
 {}//quantile::quantile(const double p_) noexcept
 
-void quantile::add(const double x)
+inline void quantile::add(const double x)
 {
 	if (n < 5)
 	{
@@ -189,4 +194,7 @@ void quantile::add(const double x)
 	++n;
 
 }//void quantile::add(const double x)
+
+}// END NAMEPSACE rstat
+}//END NAMESPACE mgsl
 

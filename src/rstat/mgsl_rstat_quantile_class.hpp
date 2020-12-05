@@ -16,5 +16,30 @@
 
 #pragma once
 
-#include "mgsl_rstat_quantile.hpp"
-#include "mgsl_rstat_rstat.hpp"
+#include <array>
+
+namespace mgsl{
+namespace rstat {
+
+class quantile {
+public:
+	quantile(const double) noexcept;
+
+	void add(const double);
+
+	double get_min()const noexcept;
+	double get_max()const noexcept;
+	double get_p_quantile()const noexcept;
+private:
+	double p;       			/* p-quantile */
+	std::array<double, 5> q;    /* heights q_i */
+	std::array<int, 5> npos;    /* positions n_i */
+	std::array<double, 5> np;   /* desired positions n_i' */
+	std::array<double, 5> dnp;  /* increments dn_i' */
+	std::size_t n;        		/* number of data added */
+};
+
+
+}// END NAMEPSACE rstat
+}//END NAMESPACE mgsl
+

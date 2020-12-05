@@ -17,4 +17,35 @@
 #pragma once
 
 #include "mgsl_rstat_quantile.hpp"
-#include "mgsl_rstat_rstat.hpp"
+
+namespace mgsl{
+namespace rstat {
+
+class rstat {
+public:
+	void add(const double) noexcept;
+
+	size_t get_n()const noexcept;
+	double get_min()const noexcept;
+	double get_max()const noexcept;
+	double get_mean()const noexcept;
+	double get_variance()const noexcept;
+	double get_sd()const noexcept;
+	double get_rms()const noexcept;
+	double get_sd_mean()const noexcept;
+	double get_median()const noexcept;
+	double get_skew()const noexcept;
+	double get_kurtosis()const noexcept;
+private:
+	double mean{0.0};   /* current mean */
+	double M2{0.0};     /* M_k = sum_{i=1..n} [ x_i - mean_n ]^k */
+	double M3{0.0};
+	double M4{0.0};
+	size_t n{0};        /* number of data points added */
+	quantile median_workspace{0.5};
+};
+
+
+}// END NAMEPSACE rstat
+}//END NAMESPACE mgsl
+
