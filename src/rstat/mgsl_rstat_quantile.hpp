@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
+#ifndef MGSL_RSTAT_QUANTILE_HPP
+#define MGSL_RSTAT_QUANTILE_HPP
 #pragma once
 
 #include <cstddef>
@@ -198,3 +200,4 @@ inline void quantile::add(const double x)
 }// END NAMEPSACE rstat
 }//END NAMESPACE mgsl
 
+#endif //MGSL_RSTAT_QUANTILE_HPP

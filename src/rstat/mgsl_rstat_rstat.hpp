@@ -14,6 +14,9 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
+#ifndef MGSL_RSTAT_RSTAT_HPP
+#define MGSL_RSTAT_RSTAT_HPP
+
 #pragma once
 
 #include "mgsl_rstat_quantile.hpp"
@@ -134,3 +137,4 @@ inline double rstat::get_kurtosis()const noexcept
 }// END NAMEPSACE rstat
 }//END NAMESPACE mgsl
 
+#endif //MGSL_RSTAT_RSTAT_HPP

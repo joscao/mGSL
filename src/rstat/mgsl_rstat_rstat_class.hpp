@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
+#ifndef MGSL_RSTAT_RSTAT_CLASS_HPP
+#define MGSL_RSTAT_RSTAT_CLASS_HPP
 #pragma once
 
 #include "mgsl_rstat_quantile.hpp"
@@ -49,3 +51,4 @@ private:
 }// END NAMEPSACE rstat
 }//END NAMESPACE mgsl
 
+#endif //MGSL_RSTAT_RSTAT_CLASS_HPP

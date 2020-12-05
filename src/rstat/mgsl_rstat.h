@@ -14,7 +14,11 @@
 // You should have received a copy of the GNU General Public License 
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
+#ifndef MGSL_RSTAT_H
+#define MGSL_RSTAT_H
 #pragma once
 
 #include "mgsl_rstat_quantile.hpp"
 #include "mgsl_rstat_rstat.hpp"
+
+#endif //MGSL_RSTAT_H
