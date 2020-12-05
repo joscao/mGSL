@@ -144,7 +144,7 @@ void quantile::add(const double x)
 		if (k < 0)
 		{
 			/* we could get here if x is nan */
-			throw std::invalid_argument("invalid input argument x: void workspace::add(const double x)");
+			throw std::invalid_argument("invalid input argument x: void quantile::add(const double x)");
 		}
 
 		/* step B2(a): update n_i */
