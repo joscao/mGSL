@@ -6,12 +6,12 @@
 // the Free Software Foundation; either version 3 of the License, or
 // (at your option) any later version.
 //
-// mGSL is distributed in the hope that it will be useful, 
-// but WITHOUT ANY WARRANTY; without even the implied warranty of 
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+// mGSL is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
-// You should have received a copy of the GNU General Public License 
+// You should have received a copy of the GNU General Public License
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
 #ifndef MGSL_RSTAT_RSTAT_CLASS_HPP
@@ -20,7 +20,7 @@
 
 #include "mgsl_rstat_quantile.hpp"
 
-namespace mgsl{
+namespace mgsl {
 namespace rstat {
 
 class rstat {
@@ -46,6 +46,7 @@ private:
 	size_t n{0};        /* number of data points added */
 	quantile median_workspace{0.5};
 };
+
 
 
 }// END NAMEPSACE rstat
