@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with mGSL; if not, see <https://www.gnu.org/licenses>.
 
-#ifndef MGSL_RSTAT_BASE_RSTAT_CLASS_H
-#define MGSL_RSTAT_BASE_RSTAT_CLASS_H
+#ifndef MGSL_RSTAT_SIMPLE_RSTAT_CLASS_H
+#define MGSL_RSTAT_SIMPLE_RSTAT_CLASS_H
 #pragma once
 
 #include <cstddef>
@@ -25,7 +25,7 @@
 namespace mgsl {
 namespace rstat {
 
-class base_rstat {
+class simple_rstat {
 public:
 	void add(const double) noexcept;
 
@@ -45,7 +45,9 @@ private:
 	size_t n{0};        /* number of data points added */
 };
 
-inline void base_rstat::add(const double x)noexcept
+//inline member functions
+
+inline void simple_rstat::add(const double x)noexcept
 {
 	/* update mean and variance */
 	const double delta = x - mean;
@@ -58,19 +60,19 @@ inline void base_rstat::add(const double x)noexcept
 	      6.0 * delta_nsq * M2 - 4.0 * delta_n * M3;
 	M3 += term1 * delta_n * (d_n - 2.0) - 3.0 * delta_n * M2;
 	M2 += term1;
-}//void base_rstat::add(const double x)noexcept
+}//void simple_rstat::add(const double x)noexcept
 
-inline size_t base_rstat::get_n()const noexcept
+inline size_t simple_rstat::get_n()const noexcept
 {
 	return n;
 }//size_t get_n()const noexcept
 
-inline double base_rstat::get_mean()const noexcept
+inline double simple_rstat::get_mean()const noexcept
 {
 	return mean;
-}//double base_rstat::get_mean()const noexcept
+}//double simple_rstat::get_mean()const noexcept
 
-inline double base_rstat::get_variance()const noexcept
+inline double simple_rstat::get_variance()const noexcept
 {
 	if (n > 1)
 	{
@@ -79,27 +81,27 @@ inline double base_rstat::get_variance()const noexcept
 	}
 	else
 		return 0.0;
-}//double base_rstat::get_variance()const noexcept
+}//double simple_rstat::get_variance()const noexcept
 
-inline double base_rstat::get_sd()const noexcept
+inline double simple_rstat::get_sd()const noexcept
 {
 	return std::sqrt(get_variance());
-}//double base_rstat::get_sd()const noexcept
+}//double simple_rstat::get_sd()const noexcept
 
-inline double base_rstat::get_rms()const noexcept
+inline double simple_rstat::get_rms()const noexcept
 {
 	double rms = 0.0;
 	if (n > 0)
 	{
 		const double sigma = get_sd();
 		const double d_n = static_cast<double>(n);
-		const double a = sqrt((n - 1.0) / d_n);
+		const double a = std::sqrt((n - 1.0) / d_n);
 		rms = std::hypot(mean, a * sigma);
 	}
 	return rms;
-}//double base_rstat::get_rms()const noexcept
+}//double simple_rstat::get_rms()const noexcept
 
-inline double base_rstat::get_sd_mean()const noexcept
+inline double simple_rstat::get_sd_mean()const noexcept
 {
 	if (n > 0)
 	{
@@ -107,9 +109,9 @@ inline double base_rstat::get_sd_mean()const noexcept
 	}
 	else
 		return 0.0;
-}//double base_rstat::get_sd_mean()const noexcept
+}//double simple_rstat::get_sd_mean()const noexcept
 
-inline double base_rstat::get_skew()const noexcept
+inline double simple_rstat::get_skew()const noexcept
 {
 	if ( n > 0)
 	{
@@ -119,9 +121,9 @@ inline double base_rstat::get_skew()const noexcept
 	}
 	else
 		return 0.0;
-}//double base_rstat::get_skew()const noexcept
+}//double simple_rstat::get_skew()const noexcept
 
-inline double base_rstat::get_kurtosis()const noexcept
+inline double simple_rstat::get_kurtosis()const noexcept
 {
 	if (n > 0)
 	{
@@ -131,10 +133,10 @@ inline double base_rstat::get_kurtosis()const noexcept
 	}
 	else
 		return 0.0;
-}//double base_rstat::get_kurtosis()const noexcept
+}//double simple_rstat::get_kurtosis()const noexcept
 
 
 }// END NAMEPSACE rstat
 }//END NAMESPACE mgsl
 
-#endif //MGSL_RSTAT_BASE_RSTAT_CLASS_H
+#endif //MGSL_RSTAT_SIMPLE_RSTAT_CLASS_H
