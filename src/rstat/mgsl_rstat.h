@@ -18,7 +18,7 @@
 #define MGSL_RSTAT_H
 #pragma once
 
-#include "mgsl_rstat_quantile.hpp"
-#include "mgsl_rstat_rstat.hpp"
+#include "mgsl_rstat_quantile_class.hpp"
+#include "mgsl_rstat_rstat_class.hpp"
 
 #endif //MGSL_RSTAT_H
