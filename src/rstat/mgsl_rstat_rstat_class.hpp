@@ -43,7 +43,7 @@ public:
 	double get_kurtosis()const noexcept;
 private:
 	simple_rstat accumulator{};
-	quantile median_workspace{0.5};
+	quantile median{0.5};
 };
 
 //inline member functions
@@ -54,7 +54,7 @@ inline void rstat::add(const double x)noexcept
 	accumulator.add(x);
 
 	/* update median and min and max*/
-	median_workspace.add(x);
+	median.add(x);
 }//void rstat::add(const double x)noexcept
 
 inline size_t rstat::get_n()const noexcept
@@ -64,12 +64,12 @@ inline size_t rstat::get_n()const noexcept
 
 inline double rstat::get_min()const noexcept
 {
-	return median_workspace.get_min();
+	return median.get_min();
 }//double rstat::get_min()const noexcept
 
 inline double rstat::get_max()const noexcept
 {
-	return median_workspace.get_max();
+	return median.get_max();
 }//double rstat::get_max()const noexcept
 
 inline double rstat::get_mean()const noexcept
@@ -99,7 +99,7 @@ inline double rstat::get_sd_mean()const noexcept
 
 inline double rstat::get_median()const noexcept
 {
-	return median_workspace.get_p_quantile();
+	return median.get_p_quantile();
 }//double rstat::get_median()const noexcept
 
 inline double rstat::get_skew()const noexcept
