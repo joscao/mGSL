@@ -95,7 +95,7 @@ inline double simple_rstat::get_rms()const noexcept
 	{
 		const double sigma = get_sd();
 		const double d_n = static_cast<double>(n);
-		const double a = std::sqrt((n - 1.0) / d_n);
+		const double a = std::sqrt((d_n - 1.0) / d_n);
 		rms = std::hypot(mean, a * sigma);
 	}
 	return rms;
